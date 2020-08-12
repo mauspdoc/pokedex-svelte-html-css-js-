@@ -66,26 +66,25 @@
 </style>
 
 <script>
-  export let poke;
+  import { createEventDispatcher } from 'svelte';
+  import formatData from '../utils/formatData.js'
 
-  const getTypes = (pokemon) => {
-    return pokemon.types.map((value)=> value.type);
+  export let poke;
+  let { artWork, pokeId, types, pokeName } = formatData.formatPokeData(poke);
+
+  const dispatch = createEventDispatcher();
+  const updateMenuCardData = () => {
+    dispatch('click', {
+      pokeName
+    })
   }
-  const getArtWork = (pokemon) => {
-    return pokemon.sprites.other["official-artwork"].front_default;
-  }
-  const getId = (pokemon) => {
-    return pokemon.id;
-  }
-  let pokeId = getId(poke);
-  let types = getTypes(poke);
 
 </script>
 
-<div class="card {types[0].name}" id="poke{pokeId}" >
+<div class="card {types[0].name}" id="poke{pokeId}" on:click={updateMenuCardData} >
  <div class="card__info">
 <small>#{pokeId}</small>
-<strong>{poke.name}</strong>
+<strong>{pokeName}</strong>
 <div class="info-types">
 {#each types as type}
 <div class="{type.name} type-box">
@@ -95,7 +94,7 @@
 </div>
  </div>
  <div class="card__img">
-   <img src={getArtWork(poke)} alt={"imagem do" + poke.name}/>
+   <img src={artWork} alt={"imagem do" + poke.name}/>
  </div>
  <div class="bg-pokeball">
    <img src="images/pokeball.png" alt="Imagem da pokeball">

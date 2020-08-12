@@ -1,22 +1,37 @@
 <script>
+
 	import api from './api/api.js'
 	import Card from './components/Card.svelte'
-
+	import formatData from './utils/formatData';
 	let pokelist = [];
 	let pokeResult;
+
+let pokeMenu = {
+	pokeName: '',
+	pokeData: '',
+	searchPokemon: async () => {
+		pokeMenu.pokeData = await api.getPokemon(pokeMenu.pokeName);
+	},
+	updateData: async (ev)=> {
+		pokeMenu.pokeName = ev.detail.pokeName;
+		await pokeMenu.searchPokemon();
+		console.log(pokeMenu.pokeData);
+	},
+};
 
 let searchBox = {
 	searchPokeName:'',
 	inputValue: function() {
 		const inputValue = searchBox.searchPokeName;
-		return inputValue;
+		return inputValue.trim().toLowerCase();
 	},
 	inputIsEmpty : function() {
 		return searchBox.inputValue() === 0;
 	},
 	searchPokemon : async function() {
 			if (!searchBox.inputIsEmpty()) {
-			pokeResult =   api.getPokemon(searchBox.searchPokeName.toLowerCase());
+			pokeResult = false; // Make poke data reactive
+			pokeResult =  await api.getPokemon(searchBox.inputValue());
 
 			}
 	},
@@ -24,9 +39,18 @@ let searchBox = {
 		if (e.key === "Enter") {
 			searchBox.searchPokemon();
 		}
+	},
+	onChange: function(e) {
+
 	}
 }
 
+// Random pokemon for first load
+
+window.addEventListener('load',()=>{
+	searchBox.searchPokeName = "Charizard";
+	searchBox.searchPokemon();
+})
 
 </script>
 
@@ -38,21 +62,59 @@ let searchBox = {
 				<input type="text" placeholder="Pesquise algum pokemon"
 				on:keydown={searchBox.onKeyDown}
 				bind:value={searchBox.searchPokeName}
+				on:change={searchBox.onChange}
 
 				>
 		</div>
 	</div>
 	<main>
-		<!-- TODO: Change await block -->
 		{#if pokeResult }
-		{#await pokeResult then pokeData}
-		<Card poke={pokeData} />
-		{/await}
+		<Card poke={pokeResult} on:click={pokeMenu.updateData} />
 		{/if}
 	</main>
+
+	<div class="menuCard">
+		<div class="menuCard__info">
+			<h2>{pokeMenu.pokeName}</h2>
+			<div class="info__attribute">
+				<div class="poke-attribute">
+					<p class="attribute-name">Type</p>
+					<p class="attribute-value">Fire</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
 </div>
 
 <style>
+	.menuCard {
+		height:17.5rem;
+		width: 100%;
+		max-width:700px;
+		background: red;
+		border-radius: 1rem 1rem 0 0;
+		position: absolute;
+		bottom: 0;
+		padding: 2rem 1rem 1rem 2rem;
+	}
+	.menuCard__info {
+		width: 50%;
+		max-width: 12.5rem;
+		color: white;
+	}
+	.menuCard__info h2 {
+		font-weight: 500;
+		margin-bottom: 1rem;
+		font-size: 1.2rem;
+		text-transform: capitalize;
+	}
+	.menuCard__info .poke-attribute {
+		display: flex;
+		justify-content: space-between;
+	}
+
+
 	#container {
 		height: 100vh;
 		width: 86vw;
