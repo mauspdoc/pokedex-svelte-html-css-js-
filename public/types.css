@@ -1,0 +1,171 @@
+/* little card type */
+.type-box.normal {
+	background-color: #A8A878;
+	border: 1px solid #6D6D4E;
+}
+
+.type-box.fire {
+	background-color: #F08030;
+	border: 1px solid #9C531F;
+}
+
+.type-box.water {
+	background-color: #6890F0;
+	border: 1px solid #445E9C;
+}
+
+.type-box.electric {
+	background-color: #F8D030;
+	border: 1px solid #A1871F;
+}
+
+.type-box.grass {
+	background-color: #78C850;
+	border: 1px solid #4E8234;
+}
+
+.type-box.ice {
+	background-color: #98D8D8;
+	border: 1px solid #638D8D;
+}
+
+.type-box.ground {
+	background-color: #E0C068;
+	border: 1px solid #927D44;
+}
+
+.type-box.flying {
+	background-color: #A890F0;
+	border: 1px solid #6D5E9C;
+}
+
+.type-box.ghost {
+	background-color: #705898;
+	border: 1px solid #493963;
+}
+
+.type-box.rock {
+	background-color: #B8A038;
+	border: 1px solid #786824;
+}
+
+.type-box.fighting {
+	background-color: #C03028;
+	border: 1px solid #7D1F1A;
+}
+
+.type-box.poison {
+	background-color: #A040A0;
+	border: 1px solid #682A68;
+}
+
+.type-box.psychic {
+	background-color: #F85888;
+	border: 1px solid #A13959;
+}
+
+.type-box.bug {
+	background-color: #A8B820;
+	border: 1px solid #6D7815;
+}
+
+.type-box.dark {
+	background-color: #705848;
+	border: 1px solid #49392F;
+}
+
+.type-box.steel {
+	background-color: #B8B8D0;
+	border: 1px solid #787887;
+}
+
+.type-box.dragon {
+	background-color: #7038F8;
+	border: 1px solid #4924A1;
+}
+
+/*Background card*/
+.card.normal {
+	background-color: rgb(180, 180, 140);
+	border: 1px solid #6D6D4E;
+}
+
+.card.fire {
+	background-color: #F08030;
+	border: 1px solid #9C531F;
+}
+
+.card.water {
+	background-color: #6890F0;
+	border: 1px solid #445E9C;
+}
+
+.card.electric {
+	background-color: #F8D030;
+	border: 1px solid #A1871F;
+}
+
+.card.grass {
+	background-color: #78C850;
+	border: 1px solid #4E8234;
+}
+
+.card.ice {
+	background-color: #98D8D8;
+	border: 1px solid #638D8D;
+}
+
+.card.ground {
+	background-color: #E0C068;
+	border: 1px solid #927D44;
+}
+
+.card.flying {
+	background-color: #A890F0;
+	border: 1px solid #6D5E9C;
+}
+
+.card.ghost {
+	background-color: #705898;
+	border: 1px solid #493963;
+}
+
+.card.rock {
+	background-color: #B8A038;
+	border: 1px solid #786824;
+}
+
+.card.fighting {
+	background-color: #C03028;
+	border: 1px solid #7D1F1A;
+}
+
+.card.poison {
+	background-color: #A040A0;
+	border: 1px solid #682A68;
+}
+
+.card.psychic {
+	background-color: #F85888;
+	border: 1px solid #A13959;
+}
+
+.card.bug {
+	background-color: #c2d61d;
+	border: 1px solid #6D7815;
+}
+
+.card.dark {
+	background-color: #705848;
+	border: 1px solid #49392F;
+}
+
+.card.steel {
+	background-color: #B8B8D0;
+	border: 1px solid #787887;
+}
+
+.card.dragon {
+	background-color: #7038F8;
+	border: 1px solid #4924A1;
+}
