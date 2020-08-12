@@ -1,8 +1,9 @@
 <script>
 
-	import api from './api/api.js'
-	import Card from './components/Card.svelte'
-	import formatData from './utils/formatData';
+	import api from './api/api.js';
+	import Card from './components/Card.svelte';
+	import componentData from './utils/componentData';
+
 	let pokelist = [];
 	let pokeResult;
 

@@ -67,10 +67,10 @@
 
 <script>
   import { createEventDispatcher } from 'svelte';
-  import formatData from '../utils/formatData.js'
+  import componentData from '../utils/componentData.js'
 
   export let poke;
-  let { artWork, pokeId, types, pokeName } = formatData.formatPokeData(poke);
+  let { artWork, pokeId, types, pokeName } = componentData.getCardData(poke);
 
   const dispatch = createEventDispatcher();
   const updateMenuCardData = () => {
