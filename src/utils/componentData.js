@@ -1,11 +1,13 @@
 import formatData from './formatData'
 import api from '../api/api.js'
 
-const getCardData = (pokemon) => {
-  const types = formatData.formatPokeData.getTypes(pokemon);
-  const artWork = formatData.formatPokeData.getArtWork(pokemon);
-  const pokeId = formatData.formatPokeData.getId(pokemon);
-  const pokeName = formatData.formatPokeData.getPokeName(pokemon);
+const getCardData = async (pokemon) => {
+  const rawData = await api.getPokemon(pokemon);
+  const types = formatData.formatPokeData.getTypes(rawData);
+  const artWork = formatData.formatPokeData.getArtWork(rawData);
+  const pokeId = formatData.formatPokeData.getId(rawData);
+  const pokeName = formatData.formatPokeData.getPokeName(rawData);
+  
   return {
     types,
     artWork,

@@ -3,9 +3,8 @@ import axios from 'axios';
 const URL_API = 'https://pokeapi.co/api/v2';
 
 const getPokemon = async (pokemon) => {
-  const req = await axios.get(`${URL_API}/pokemon/${pokemon}`);
+  const req = await axios.get(`${URL_API}/pokemon/${pokemon.toLowerCase()}`);
   const data = req.data;
-  console.log(data);
   return data;
 }
 

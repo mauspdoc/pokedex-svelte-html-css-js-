@@ -1,76 +1,3 @@
-<script>
-	import api from './api/api.js';
-	import Card from './components/Card.svelte';
-	import MenuCard from './components/MenuCard.svelte';
-	import componentData from './utils/componentData';
-	import { fade } from 'svelte/transition';
-	import { visibility } from './stores.js';
-
-	let pokelist = [];
-	let pokeResult;
-
-	let pokeMenu = {
-		pokeName: '',
-		showUpMenuCard: async (ev) => {
-			pokeMenu.pokeName = ev.detail.pokeName;
-			visibility.update((prevState) => { return {...prevState, vMenuCard: true} } )
-		},
-	};
-
-	let searchBox = {
-		searchPokeName: '',
-		inputValue: function() {
-			const inputValue = searchBox.searchPokeName;
-			return inputValue.trim().toLowerCase();
-		},
-		inputIsEmpty: function() {
-			return searchBox.inputValue() === 0;
-		},
-		searchPokemon: async function() {
-			if (!searchBox.inputIsEmpty()) {
-				pokeResult = false; // Make poke data reactive
-				pokeResult = await api.getPokemon(searchBox.inputValue());
-
-			}
-		},
-		onKeyDown: function(e) {
-			if (e.key === "Enter") {
-				searchBox.searchPokemon();
-			}
-		},
-		onChange: function(e) {
-
-		}
-	}
-
-	// First pokemon to appear when load
-	window.addEventListener('load', () => {
-		searchBox.searchPokeName = "Charizard";
-		searchBox.searchPokemon();
-	})
-
-
-</script>
-
-<div id="container">
-	<div class="header-box">
-		<h1>Procurando algum <br /> pokemon?</h1>
-		<div class="search-box">
-			<img src="images/icons/search.png" alt="Lupa" on:click={searchBox.searchPokemon}>
-			<input type="text" placeholder="Pesquise algum pokemon" on:keydown={searchBox.onKeyDown} bind:value={searchBox.searchPokeName} on:change={searchBox.onChange}>
-		</div>
-	</div>
-	<main>
-		{#if pokeResult }
-		<Card poke={pokeResult} on:click={ pokeMenu.showUpMenuCard } />
-		{/if}
-	</main>
-
-</div>
-{#if $visibility.vMenuCard}
-<MenuCard pokeName={pokeMenu.pokeName} />
-{/if}
-
 <style>
 
 	#container {
@@ -139,3 +66,71 @@
 		}
 	}
 </style>
+
+<script>
+	import api from './api/api.js';
+	import Card from './components/Card.svelte';
+	import MenuCard from './components/MenuCard.svelte';
+	import componentData from './utils/componentData';
+	import { fade } from 'svelte/transition';
+	import { visibility } from './stores.js';
+
+	let pokelist = [];
+	let pokeResult;
+
+	let pokeMenu = {
+		pokeName: '',
+		showUpMenuCard: async (ev) => {
+			pokeMenu.pokeName = ev.detail.forPokemon;
+			visibility.update((prevState) => { return {...prevState, vMenuCard: true} } )
+		},
+	};
+
+	let testename ;
+	let searchBox = {
+		searchPokeName: 'Charizard',
+		inputValue: 'Charizard',
+		inputIsEmpty: function() {
+			return searchBox.inputValue.length === 0;
+		},
+		searchPokemon: async function() {
+			if (!searchBox.inputIsEmpty()) {
+					searchBox.searchPokeName = searchBox.inputValue;
+					testename = searchBox.inputValue
+
+			}
+		},
+		onKeyDown: function(e) {
+			if (e.key === "Enter") {
+				searchBox.searchPokemon();
+			}
+		},
+	}
+
+
+	// First pokemon to appear when load
+	window.addEventListener('load', () => {
+		searchBox.searchPokemon();
+	})
+
+
+</script>
+
+<div id="container">
+	<div class="header-box">
+		<h1>Procurando algum <br /> pokemon?</h1>
+		<div class="search-box">
+			<img src="images/icons/search.png" alt="Lupa" on:click={searchBox.searchPokemon}>
+			<input type="text" placeholder="Pesquise algum pokemon" on:keydown={searchBox.onKeyDown} bind:value={searchBox.inputValue} >
+		</div>
+	</div>
+	<main>
+
+		<Card bind:forPokemon={testename} on:click={ pokeMenu.showUpMenuCard } />
+
+	</main>
+
+</div>
+{#if $visibility.vMenuCard}
+<MenuCard pokeName={pokeMenu.pokeName} />
+{/if}

@@ -69,24 +69,38 @@
   import { createEventDispatcher } from 'svelte';
   import componentData from '../utils/componentData.js'
 
-  export let poke;
-  let { artWork, pokeId, types, pokeName } = componentData.getCardData(poke);
+  export let forPokemon = 'Charizard';
 
   const dispatch = createEventDispatcher();
+
   const updateMenuCardData = () => {
     dispatch('click', {
-      pokeName
+      forPokemon,
     })
   }
 
-</script>
+let pokeData = false;
 
-<div class="card bg-{types[0].name}" id="poke{pokeId}" on:click={updateMenuCardData} >
+const updateData = async (pokemonName) => {
+    const data = await componentData.getCardData(pokemonName);
+    pokeData = data;
+  }
+
+
+// Updates card when pokemon change when user search another pokemon
+$: updateData(forPokemon)
+
+
+
+
+</script>
+{#if pokeData}
+<div class="card bg-{pokeData.types[0].name}" id="poke{pokeData.pokeId}" on:click={updateMenuCardData} >
  <div class="card__info">
-<small>#{pokeId}</small>
-<strong>{pokeName}</strong>
+<small>#{pokeData.pokeId}</small>
+<strong>{pokeData.pokeName}</strong>
 <div class="info-types">
-{#each types as type}
+{#each pokeData.types as type}
 <div class="{type.name} type-box">
   <img src="images/types/{type.name}.png" alt="Miniatura do tipo {type.name}"> {type.name}
 </div>
@@ -94,9 +108,10 @@
 </div>
  </div>
  <div class="card__img">
-   <img src={artWork} alt={"imagem do" + poke.name}/>
+   <img src={pokeData.artWork} alt={"imagem do" + pokeData.pokeName}/>
  </div>
  <div class="bg-pokeball">
    <img src="images/pokeball.png" alt="Imagem da pokeball">
  </div>
 </div>
+{/if}
