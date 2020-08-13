@@ -15,7 +15,7 @@
 }
 
 .type-box.electric {
-	background-color: #F8D030;
+	background-color: #eed535;
 	border: 1px solid #A1871F;
 }
 
@@ -85,87 +85,87 @@
 }
 
 /*Background card*/
-.card.normal {
+.bg-normal {
 	background-color: rgb(180, 180, 140);
 	border: 1px solid #6D6D4E;
 }
 
-.card.fire {
+.bg-fire {
 	background-color: #F08030;
 	border: 1px solid #9C531F;
 }
 
-.card.water {
+.bg-water {
 	background-color: #6890F0;
 	border: 1px solid #445E9C;
 }
 
-.card.electric {
-	background-color: #F8D030;
+.bg-electric {
+	background-color: #f2cb55;
 	border: 1px solid #A1871F;
 }
 
-.card.grass {
+.bg-grass {
 	background-color: #78C850;
 	border: 1px solid #4E8234;
 }
 
-.card.ice {
+.bg-ice {
 	background-color: #98D8D8;
 	border: 1px solid #638D8D;
 }
 
-.card.ground {
+.bg-ground {
 	background-color: #E0C068;
 	border: 1px solid #927D44;
 }
 
-.card.flying {
+.bg-flying {
 	background-color: #A890F0;
 	border: 1px solid #6D5E9C;
 }
 
-.card.ghost {
+.bg-ghost {
 	background-color: #705898;
 	border: 1px solid #493963;
 }
 
-.card.rock {
+.bg-rock {
 	background-color: #B8A038;
 	border: 1px solid #786824;
 }
 
-.card.fighting {
+.bg-fighting {
 	background-color: #C03028;
 	border: 1px solid #7D1F1A;
 }
 
-.card.poison {
+.bg-poison {
 	background-color: #A040A0;
 	border: 1px solid #682A68;
 }
 
-.card.psychic {
+.bg-psychic {
 	background-color: #F85888;
 	border: 1px solid #A13959;
 }
 
-.card.bug {
+.bg-bug {
 	background-color: #c2d61d;
 	border: 1px solid #6D7815;
 }
 
-.card.dark {
+.bg-dark {
 	background-color: #705848;
 	border: 1px solid #49392F;
 }
 
-.card.steel {
+.bg-steel {
 	background-color: #B8B8D0;
 	border: 1px solid #787887;
 }
 
-.card.dragon {
+.bg-dragon {
 	background-color: #7038F8;
 	border: 1px solid #4924A1;
 }

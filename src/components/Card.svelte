@@ -81,7 +81,7 @@
 
 </script>
 
-<div class="card {types[0].name}" id="poke{pokeId}" on:click={updateMenuCardData} >
+<div class="card bg-{types[0].name}" id="poke{pokeId}" on:click={updateMenuCardData} >
  <div class="card__info">
 <small>#{pokeId}</small>
 <strong>{pokeName}</strong>
