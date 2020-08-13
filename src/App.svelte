@@ -2,6 +2,7 @@
 	import api from './api/api.js';
 	import Card from './components/Card.svelte';
 	import componentData from './utils/componentData';
+	import { fade } from 'svelte/transition';
 
 	let pokelist = [];
 	let pokeResult;
@@ -67,7 +68,7 @@
 </div>
 {#if pokeMenu.pokeData}
 <div class="bg-blur" on:click={()=>{pokeMenu.pokeData = false}}></div>
-<div class="menuCard bg-{pokeMenu.pokeData.types[0].name}">
+<div class="menuCard bg-{pokeMenu.pokeData.types[0].name}" in:fade="{{duration:1000}}">
 
 	<div class="menuCard__info">
 		<h2>{pokeMenu.pokeName}</h2>
