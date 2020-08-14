@@ -8,10 +8,15 @@
 		display: flex;
 		flex-direction: column;
 		align-items:center;
+		min-height: 20rem;
 	}
 
 	.header-box {
+		border: none;
+		border-radius: 0 0 1.5rem 1.5rem;
 		width: 100%;
+		padding: 2rem 1rem;
+		max-width: 900px;
 		display:flex;
 		flex-direction: column;
 		margin-bottom: 3rem;
@@ -20,8 +25,9 @@
 		width: 100%;
 	}
 	.header-box h1 {
-		margin-top: 2rem;
 		margin-bottom: 2rem;
+		color: white;
+		font-weight: 500;
 
 	}
 	.header-box .search-box {
@@ -70,6 +76,7 @@
 <script>
 	import api from './api/api.js';
 	import Card from './components/Card.svelte';
+	import ListPokemons from './components/ListPokemons.svelte';
 	import MenuCard from './components/MenuCard.svelte';
 	import componentData from './utils/componentData';
 	import { fade } from 'svelte/transition';
@@ -81,12 +88,12 @@
 	let pokeMenu = {
 		pokeName: '',
 		showUpMenuCard: async (ev) => {
-			pokeMenu.pokeName = ev.detail.forPokemon;
+			// pokeMenu.pokeName = ev.detail.forPokemon;
 			visibility.update((prevState) => { return {...prevState, vMenuCard: true} } )
 		},
 	};
 
-	let testename ;
+
 	let searchBox = {
 		searchPokeName: 'Charizard',
 		inputValue: 'Charizard',
@@ -96,7 +103,6 @@
 		searchPokemon: async function() {
 			if (!searchBox.inputIsEmpty()) {
 					searchBox.searchPokeName = searchBox.inputValue;
-					testename = searchBox.inputValue
 
 			}
 		},
@@ -115,19 +121,18 @@
 
 
 </script>
-
-<div id="container">
-	<div class="header-box">
-		<h1>Procurando algum <br /> pokemon?</h1>
-		<div class="search-box">
-			<img src="images/icons/search.png" alt="Lupa" on:click={searchBox.searchPokemon}>
-			<input type="text" placeholder="Pesquise algum pokemon" on:keydown={searchBox.onKeyDown} bind:value={searchBox.inputValue} >
-		</div>
+<div class="header-box bg-fire">
+	<h1>Procurando algum <br /> pokemon?</h1>
+	<div class="search-box">
+		<img src="images/icons/search.png" alt="Lupa" on:click={searchBox.searchPokemon}>
+		<input type="text" placeholder="Pesquise algum pokemon" on:keydown={searchBox.onKeyDown} bind:value={searchBox.inputValue} >
 	</div>
+</div>
+<div id="container">
 	<main>
 
-		<Card bind:forPokemon={testename} on:click={ pokeMenu.showUpMenuCard } />
-
+		<Card bind:forPokemon={searchBox.searchPokeName}  />
+		<ListPokemons />
 	</main>
 
 </div>

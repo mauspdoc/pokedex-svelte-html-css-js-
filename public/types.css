@@ -50,7 +50,7 @@
 }
 
 .type-box.fighting {
-	background-color: #C03028;
+	background-color: #c39385;
 	border: 1px solid #7D1F1A;
 }
 
@@ -82,7 +82,13 @@
 .type-box.dragon {
 	background-color: #7038F8;
 	border: 1px solid #4924A1;
+}1000
+
+.type-box.fairy {
+	background-color: #b317a2;
+	border: #f44ccf 1px solid;
 }
+
 
 /*Background card*/
 .bg-normal {
@@ -91,7 +97,7 @@
 }
 
 .bg-fire {
-	background-color: #F08030;
+	background-color: #fa6555;
 	border: 1px solid #9C531F;
 }
 
@@ -168,4 +174,8 @@
 .bg-dragon {
 	background-color: #7038F8;
 	border: 1px solid #4924A1;
+}
+
+.bg-fairy {
+	background-color: #dd2db1;
 }

@@ -9,7 +9,8 @@
     border-radius: .5rem;
     z-index: 0;
     max-width: 300px;
-    margin: 0 auto;
+    margin: 0 auto 2.7rem auto;
+    cursor: pointer;
   }
   .card .card__info {
     display: flex;
@@ -68,6 +69,7 @@
 <script>
   import { createEventDispatcher } from 'svelte';
   import componentData from '../utils/componentData.js'
+  import { visibility, globalData } from '../stores.js';
 
   export let forPokemon = 'Charizard';
 
@@ -86,6 +88,10 @@ const updateData = async (pokemonName) => {
     pokeData = data;
   }
 
+const onClickShowMenu = () => {
+  globalData.update((prevState) => {return { ...prevState, pokeForMenu: pokeData.pokeName }})
+  visibility.update((prevState) => { return { ...prevState, vMenuCard: true } } )
+}
 
 // Updates card when pokemon change when user search another pokemon
 $: updateData(forPokemon)
@@ -95,7 +101,7 @@ $: updateData(forPokemon)
 
 </script>
 {#if pokeData}
-<div class="card bg-{pokeData.types[0].name}" id="poke{pokeData.pokeId}" on:click={updateMenuCardData} >
+<div class="card bg-{pokeData.types[0].name}" pokeId="{pokeData.pokeId}" on:click={onClickShowMenu} >
  <div class="card__info">
 <small>#{pokeData.pokeId}</small>
 <strong>{pokeData.pokeName}</strong>

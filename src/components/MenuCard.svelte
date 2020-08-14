@@ -1,14 +1,14 @@
 <script>
   import componentData from '../utils/componentData';
   import { fade } from 'svelte/transition';
-  import { visibility } from '../stores.js';
+  import { visibility, globalData } from '../stores.js';
 
   export let pokeName;
   let pokeMenu = {
     pokeName,
     pokeData: '',
     updateData: async () => {
-      pokeMenu.pokeName = pokeName;
+      pokeMenu.pokeName = $globalData.pokeForMenu;
       pokeMenu.pokeData = await componentData.getMenuCardData(pokeMenu.pokeName);
     },
   };
@@ -71,13 +71,14 @@ const closeWindow = () => { visibility.update((prevState) => { return {...prevSt
 
 <style>
   .bg-blur {
-		position: absolute;
+		position: fixed;
+    top:0;
 		width: 100%;
 		height: 100%;
 		background: rgba(0, 0, 0, 0.39);
 	}
 	.menuCard {
-		position: relative;
+		position: fixed;
 		display: flex;
 		align-items: center;
 		justify-content: space-around;
@@ -86,7 +87,7 @@ const closeWindow = () => { visibility.update((prevState) => { return {...prevSt
 		max-width:700px;
 		max-height: 250px;
 		border-radius: 1rem 1rem 0 0;
-		position: absolute;
+		/* position: absolute; */
 		bottom: 0;
 		padding: 2rem 1rem 1rem 2rem;
 	}
